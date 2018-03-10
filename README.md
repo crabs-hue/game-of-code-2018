@@ -9,8 +9,8 @@ The main application class is:
 
 Start it as usual for a Spring Boot application.
 
-Application is available on:
-<http://localhost:8081/>
+API is available on:
+<http://localhost:8081/api/>
 
 Add an `application-local.yml` file to `/src/main/resources` (ignored by Git) to specify custom configuration properties.
 
@@ -18,7 +18,10 @@ Add an `application-local.yml` file to `/src/main/resources` (ignored by Git) to
 
 Sources are located under the `frontend` module.
 
-Start is as usual for an Angular application:
+Start it as usual for an Angular application:
 ```sh
 npm run start
 ```
+
+Application is available on:
+<http://localhost:4200>
