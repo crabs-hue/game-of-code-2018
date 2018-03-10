@@ -1,2 +1,8 @@
 .idea
 .iml
+
+# Backend files
+application-local.yml
+
+# Frontend files
+frontend/node_modules

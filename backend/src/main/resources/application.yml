@@ -1,0 +1,11 @@
+# ===================================================================
+# SPRING BOOT CONFIGURATION PROPERTIES
+# This file is always loaded, only put here properties common to all profiles (like business properties).
+#
+# Common application properties are available here:
+# https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+logging:
+  level:
+    org.springframework: INFO
