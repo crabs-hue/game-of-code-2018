@@ -10,7 +10,7 @@ The main application class is:
 Start it as usual for a Spring Boot application.
 
 API is available on:
-<http://localhost:8081/api/>
+<http://localhost:8080/api/>
 
 Add an `application-local.yml` file to `/src/main/resources` (ignored by Git) to specify custom configuration properties.
 
