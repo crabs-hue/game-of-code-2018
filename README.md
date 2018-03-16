@@ -18,9 +18,14 @@ Add an `application-local.yml` file to `/src/main/resources` (ignored by Git) to
 
 Sources are located under the `frontend` module.
 
+After the first checkout, install with:
+```sh
+npm install
+```
+
 Start it as usual for an Angular application:
 ```sh
-npm run start
+npm start
 ```
 
 Application is available on:
