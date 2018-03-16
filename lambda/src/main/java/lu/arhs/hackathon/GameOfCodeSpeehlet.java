@@ -29,11 +29,11 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
                 requestEnvelope.getSession().getSessionId());
 
         String speechOutput =
-                "Welcome to the Minecraft Helper. You can ask a question like, "
-                        + "what's the recipe for a chest? ... Now, what can I help you with?";
+                "Welcome to the lifestyle app of Luxembourg. You can ask a question about, "
+                        + "events, public transportation and traffic ...";
         // If the user either does not reply to the welcome message or says
         // something that is not understood, they will be prompted again with this text.
-        String repromptText = "For instructions on what you can say, please say help me.";
+        String repromptText = "Now, what can I help you with?";
 
         // Here we are prompting the user for input
         return SpeechletResponseBuilder.withOutputSpeech(speechOutput).withRepromptOutputSpeech(repromptText).buildRespons();
