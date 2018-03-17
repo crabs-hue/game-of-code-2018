@@ -8,9 +8,7 @@ public class GraphRepositoryTest {
 
     @Test
     public void testEvent() throws Exception {
-        GraphRepository.getEvents();
-
-        int i = 0;
+        GraphRepository.getEvents(49.600690970137855, 6.113794412913669, 5);
     }
 
 }
