@@ -5,6 +5,8 @@
 CALL apoc.load.json('https://acel.lu/api/v1/events') YIELD value as event
 UNWIND event.location as location
 CREATE (e:Event {id: event.id , description: event.description, source: 'acel.lu' })
+WITH location
+WHERE location.locality is not null
 MERGE (l:Locality { name: location.locality })
 CREATE (e)-[:TAKES_PLACE_IN]->(l);
 
