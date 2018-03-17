@@ -1,7 +1,9 @@
 package lu.arhs.hackathon;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
+import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
+import com.amazon.speech.ui.PlainTextOutputSpeech;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +32,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
 
         String speechOutput =
                 "Welcome to the lifestyle app of Luxembourg. You can ask a question about, "
-                        + "events, public transportation and traffic ...";
+                        + "events, public transportation and traffic ... Now, what can I help you with?";
         // If the user either does not reply to the welcome message or says
         // something that is not understood, they will be prompted again with this text.
         String repromptText = "Now, what can I help you with?";
@@ -40,8 +42,27 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
     }
 
     @Override
-    public SpeechletResponse onIntent(SpeechletRequestEnvelope<IntentRequest> speechletRequestEnvelope) {
-        return null;
+    public SpeechletResponse onIntent(SpeechletRequestEnvelope<IntentRequest> requestEnvelope) {
+        IntentRequest request = requestEnvelope.getRequest();
+        log.info("onIntent requestId={}, sessionId={}", request.getRequestId(),
+                requestEnvelope.getSession().getSessionId());
+
+        Intent intent = request.getIntent();
+        String intentName = (intent != null) ? intent.getName() : null;
+
+        switch (intentName) {
+            case "AMAZON.HelpIntent":
+                return getHelp();
+            case "AMAZON.StopIntent":
+            case "AMAZON.CancelIntent":
+                PlainTextOutputSpeech outputSpeech = new PlainTextOutputSpeech();
+                outputSpeech.setText("Goodbye");
+                return SpeechletResponse.newTellResponse(outputSpeech);
+            default:
+                String errorSpeech = "This is unsupported.  Please try something else.";
+                return SpeechletResponseBuilder.withOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
+
+        }
     }
 
 
@@ -51,6 +72,18 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
                 requestEnvelope.getSession().getSessionId());
 
         // any cleanup logic goes here
+    }
+
+
+    private SpeechletResponse getHelp(){
+        String speechOutput =
+                "You can ask questions about minecraft such as, what's "
+                        + "the recipe for a chest, or, you can say exit... "
+                        + "Now, what can I help you with?";
+        String repromptText =
+                "You can say things like, what's the recipe for a"
+                        + " chest, or you can say exit... Now, what can I help you with?";
+        return SpeechletResponseBuilder.withOutputSpeech(speechOutput).withRepromptOutputSpeech(repromptText).buildRespons();
     }
 
 }
