@@ -10,6 +10,8 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>backend</module>
+        <module>crawler</module>
+        <module>lambda</module>
     </modules>
 
     <properties>

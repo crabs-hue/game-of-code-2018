@@ -12,9 +12,9 @@ public class Neo4jConnection implements AutoCloseable {
     private final Session session;
 
     public Neo4jConnection(){
-        String uri = System.getenv("NEO4J_URI");
-        String user = System.getenv("NEO4J_USER");
-        String password = System.getenv("NEO4J_PASSWORD");
+        String uri = "bolt://ec2-52-211-57-228.eu-west-1.compute.amazonaws.com:7687";
+        String user = "neo4j";
+        String password = "password";
         this.driver = GraphDatabase.driver( uri, AuthTokens.basic( user, password ) );
         this.session = driver.session();
     }

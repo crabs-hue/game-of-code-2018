@@ -4,6 +4,7 @@ import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
+import lu.arhs.hackathon.intentHandlers.EventIntentHandler;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
         String repromptText = "Now, what can I help you with?";
 
         // Here we are prompting the user for input
-        return SpeechletResponseBuilder.withOutputSpeech(speechOutput).withRepromptOutputSpeech(repromptText).buildRespons();
+        return SpeechletResponseBuilder.withOutputSpeech(speechOutput).withRepromptOutputSpeech(repromptText).withShouldEndSession(false).buildRespons();
     }
 
     @Override
@@ -46,13 +47,19 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
         IntentRequest request = requestEnvelope.getRequest();
         log.info("onIntent requestId={}, sessionId={}", request.getRequestId(),
                 requestEnvelope.getSession().getSessionId());
+        // session cen be used to save data
+        Session session = requestEnvelope.getSession();
+
 
         Intent intent = request.getIntent();
-        String intentName = (intent != null) ? intent.getName() : null;
+        String intentName = (intent != null) ? intent.getName() : "s";
+        log.info("onIntent intentname={}, sessionId={}", intentName,
+                requestEnvelope.getSession().getSessionId());
 
         switch (intentName) {
             case "EventIntent":
-
+                EventIntentHandler handler = new EventIntentHandler();
+                return handler.getEvents(requestEnvelope);
 
             case "AMAZON.NextIntent":
             case "AMAZON.LoopOnIntent":

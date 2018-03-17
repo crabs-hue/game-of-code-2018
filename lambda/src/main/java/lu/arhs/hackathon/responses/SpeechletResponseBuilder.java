@@ -1,14 +1,22 @@
 package lu.arhs.hackathon.responses;
 
+import com.amazon.speech.slu.Intent;
+import com.amazon.speech.speechlet.Directive;
 import com.amazon.speech.speechlet.SpeechletResponse;
+import com.amazon.speech.speechlet.dialog.directives.DelegateDirective;
+import com.amazon.speech.speechlet.dialog.directives.DialogIntent;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpeechletResponseBuilder {
 
     private PlainTextOutputSpeech outputSpeech;
     private Reprompt reprompt;
     private boolean shouldEndSession = true;
+    private List<Directive> directives = new ArrayList<>();
 
     private SpeechletResponseBuilder(String stringOutput){
         this.outputSpeech = new PlainTextOutputSpeech();
@@ -35,8 +43,19 @@ public class SpeechletResponseBuilder {
         return  this;
     }
 
+    public SpeechletResponseBuilder withDelegateDialog(Intent requestIntent){
+        DialogIntent updatedIntent = new DialogIntent(requestIntent);
+        DelegateDirective delegateDirective = new DelegateDirective();
+        delegateDirective.setUpdatedIntent(updatedIntent);
+
+
+        this.directives.add(delegateDirective) ;
+        return this;
+    }
+
     public SpeechletResponse buildRespons(){
         SpeechletResponse response =  SpeechletResponse.newAskResponse(this.outputSpeech, this.reprompt);
+        response.setDirectives(this.directives);
         response.setShouldEndSession(this.shouldEndSession);
         return response;
     }

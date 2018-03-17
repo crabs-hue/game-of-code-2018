@@ -22,16 +22,115 @@
         "slots": [
           {
             "name": "date",
-            "type": "AMAZON.DATE"
+            "type": "AMAZON.DATE",
+            "samples": [
+              "at the weekend",
+              "tomorrow",
+              "today"
+            ]
+          },
+          {
+            "name": "locale",
+            "type": "AMAZON.SearchQuery",
+            "samples": [
+              "{locale}"
+            ]
           }
         ],
         "samples": [
-          "What's going on {date}",
-          "What's up at {date}",
-          "I want to go out {date}"
+          "What's going on in {locale}",
+          "What's up at {locale}",
+          "I want to go out {locale}"
         ]
+      },
+      {
+        "name": "ChooseEventIntent",
+        "slots": [
+          {
+            "name": "item",
+            "type": "AMAZON.SearchQuery"
+          }
+        ],
+        "samples": [
+          "I go for {item}",
+          "{item} sounds interestig",
+          "I want to go to {item}"
+        ]
+      },
+      {
+        "name": "AMAZON.LoopOnIntent",
+        "slots": [],
+        "samples": []
+      },
+      {
+        "name": "AMAZON.NextIntent",
+        "slots": [],
+        "samples": []
       }
     ],
     "types": []
-  }
+  },
+  "dialog": {
+    "intents": [
+      {
+        "name": "EventIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "date",
+            "type": "AMAZON.DATE",
+            "confirmationRequired": false,
+            "elicitationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Slot.1283357123808.419983587684"
+            }
+          },
+          {
+            "name": "locale",
+            "type": "AMAZON.SearchQuery",
+            "confirmationRequired": false,
+            "elicitationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Slot.1175816318125.648139264981"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ChooseEventIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "item",
+            "type": "AMAZON.SearchQuery",
+            "confirmationRequired": false,
+            "elicitationRequired": false,
+            "prompts": {}
+          }
+        ]
+      }
+    ]
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Slot.1283357123808.419983587684",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "When do you want to go out"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Slot.1175816318125.648139264981",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Where do you want to go out"
+        }
+      ]
+    }
+  ]
 }
