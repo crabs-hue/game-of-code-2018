@@ -4,6 +4,7 @@ import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
+import lu.arhs.hackathon.intentHandlers.EventIntentHandler;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,8 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
 
         switch (intentName) {
             case "EventIntent":
-
+                EventIntentHandler handler = new EventIntentHandler();
+                return handler.getEvents(requestEnvelope);
 
             case "AMAZON.NextIntent":
             case "AMAZON.LoopOnIntent":
