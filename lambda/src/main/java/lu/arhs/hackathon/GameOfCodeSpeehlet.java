@@ -1,13 +1,17 @@
 package lu.arhs.hackathon;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
+import com.amazon.speech.slu.ConfirmationStatus;
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
+import lu.arhs.hackathon.domain.Event;
 import lu.arhs.hackathon.intentHandlers.EventIntentHandler;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class GameOfCodeSpeehlet implements SpeechletV2 {
 
@@ -57,10 +61,35 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
 
         switch (intentName) {
             case "EventIntent":
-                EventIntentHandler handler = new EventIntentHandler();
-                return handler.getEvents(requestEnvelope);
+                if (ConfirmationStatus.NONE.equals(intent.getConfirmationStatus())) {
+                    EventIntentHandler handler = new EventIntentHandler();
+                    return handler.getEvents(requestEnvelope);
+                }else if (ConfirmationStatus.CONFIRMED.equals(intent.getConfirmationStatus())){
+                    List<?> list = (List<?>) session.getAttribute("list");
+                    if ( null != list && !list.isEmpty()){
+                        if (list.get(0) instanceof Event){
+                            EventIntentHandler handler = new EventIntentHandler();
+                            return handler.iterateOverList(requestEnvelope);
+                        }
+                    }
+                }
 
             case "AMAZON.NextIntent":
+
+                List<?> list = (List<?>) session.getAttribute("list");
+                if ( null != list && !list.isEmpty()){
+                    if (list.get(0) instanceof Event){
+                        EventIntentHandler handler = new EventIntentHandler();
+                        return handler.iterateOverList(requestEnvelope);
+                    }
+                }else {
+                    String errorSpeech = "This list is curently unsupported.  Please try something else.";
+                    return SpeechletResponseBuilder.withOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
+                }
+
+
+            case "AMAZON.YesIntent":
+            case "AMAZON.NoIntent":
             case "AMAZON.LoopOnIntent":
 
             case "AMAZON.HelpIntent":
