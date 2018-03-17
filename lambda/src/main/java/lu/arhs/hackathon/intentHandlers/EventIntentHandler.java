@@ -6,9 +6,13 @@ import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import lu.arhs.hackathon.GameOfCodeSpeehlet;
+import lu.arhs.hackathon.domain.Event;
+import lu.arhs.hackathon.repository.GraphRepository;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class EventIntentHandler {
     private static final Logger log = LoggerFactory.getLogger(EventIntentHandler.class);
@@ -28,7 +32,10 @@ public class EventIntentHandler {
 
         }
 
-        String outputText = String.format("I found %d events, should we have a look on the first one?", 10);
+        List<Event> events = GraphRepository.getEvents(12.5, 12.5, 5);
+
+
+        String outputText = String.format("I found %d events, should we have a look on the first one?", events.size());
 
         String repromtText = String.format("Last chance to check on the events in %s", location);
 
