@@ -11,7 +11,7 @@ Start it as usual for a Spring Boot application.
 
 ## API
 
-The Api is accessible via a GraphQL client such "Altair GraphQL client" or "postman" which can be installed on Firefox or google chrome as an extension.
+The Api is accessible via a GraphQL client such "Altair GraphQL client" which can be installed on Firefox or google chrome as an extension.
 
 URL: http://ec2-52-211-57-228.eu-west-1.compute.amazonaws.com:8080/graphql/
 Username: neo4j
@@ -65,3 +65,10 @@ Example ouput:
   }
 }
 ```
+
+## NEO4J
+
+An instance of NEO4J is deployed at bolt://neo4j@ec2-52-211-57-228.eu-west-1.compute.amazonaws.com:7687.
+
+## Queries
+The neo4j cipher queries are located at https://github.com/crabs-hue/game-of-code-2018/tree/master/crawler/src/main/resources.
