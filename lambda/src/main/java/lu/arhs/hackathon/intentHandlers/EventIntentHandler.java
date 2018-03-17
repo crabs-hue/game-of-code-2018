@@ -24,6 +24,7 @@ public class EventIntentHandler {
         String location = intent.getSlot("location").getValue();
 
         if (null == location){
+            location = "Merl";
 
         }
 
