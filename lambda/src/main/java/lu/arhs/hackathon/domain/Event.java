@@ -7,6 +7,7 @@ public class Event {
     String start;
     String description;
     String end;
+    String type = "Event";
 
     public double getLan() {
         return lan;

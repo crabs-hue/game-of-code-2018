@@ -1,8 +1,5 @@
-lu\arhs\hackathon\persistance\Neo4jConnection.class
-lu\arhs\hackathon\responses\SpeechletResponseBuilder.class
-lu\arhs\hackathon\repository\GraphRepository.class
-lu\arhs\hackathon\domain\Event.class
-lu\arhs\hackathon\GameOfCodeRequestHandler.class
-lu\arhs\hackathon\intentHandlers\EventIntentHandler.class
-lu\arhs\hackathon\executor\CypherExecutor.class
-lu\arhs\hackathon\GameOfCodeSpeehlet.class
+lu/arhs/hackathon/intentHandlers/EventIntentHandler.class
+lu/arhs/hackathon/GameOfCodeSpeehlet.class
+lu/arhs/hackathon/GameOfCodeRequestHandler.class
+lu/arhs/hackathon/responses/SpeechletResponseBuilder.class
+lu/arhs/hackathon/executor/CypherExecutor.class

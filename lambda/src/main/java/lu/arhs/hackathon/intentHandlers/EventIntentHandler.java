@@ -12,7 +12,9 @@ import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class EventIntentHandler {
@@ -38,12 +40,12 @@ public class EventIntentHandler {
         session.setAttribute("list",events);
         session.setAttribute("count",0);
 
-        String outputText = String.format("I found %d events, should we have a look on the first one?", events.size());
+        String outputText = String.format("I found %d events, should we have a look on them?", events.size());
 
         String repromtText = String.format("Last chance to check on the events in %s", location);
 
 
-        return SpeechletResponseBuilder.withOutputSpeech(outputText).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).withDelegateDialog(intent).buildRespons();
+        return SpeechletResponseBuilder.withOutputSpeech(outputText).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).withDialogElcit(intent).buildRespons();
     }
 
 
@@ -56,13 +58,13 @@ public class EventIntentHandler {
         Intent intent = request.getIntent();
 
         String outSpeech = "No more events found. What else can I do for you?";
-        List<Event> list = (List<Event>)session.getAttribute("list");
+        List<LinkedHashMap> list = (ArrayList<LinkedHashMap>)session.getAttribute("list");
         int count = (int) session.getAttribute("count");
-        Iterator<Event> iter = list.listIterator(0);
+        Iterator<LinkedHashMap> iter = list.listIterator(count);
         if (iter.hasNext()){
-            Event event = iter.next();
+            LinkedHashMap event = iter.next();
             count = list.indexOf(event);
-            outSpeech = String.format("This Event, %s and takes place in %s at %t", event.getDescription(),event.getLan(), event.getStart());
+            outSpeech = String.format("This Event, %s and takes place in %s at %t", event.get("description"),event.get("lan"), event.get("start"));
             session.setAttribute("count", count);
         }
 

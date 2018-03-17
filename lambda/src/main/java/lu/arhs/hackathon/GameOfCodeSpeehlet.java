@@ -11,7 +11,10 @@ import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameOfCodeSpeehlet implements SpeechletV2 {
 
@@ -61,34 +64,37 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
 
         switch (intentName) {
             case "EventIntent":
-                if (ConfirmationStatus.NONE.equals(intent.getConfirmationStatus())) {
+
                     EventIntentHandler handler = new EventIntentHandler();
                     return handler.getEvents(requestEnvelope);
-                }else if (ConfirmationStatus.CONFIRMED.equals(intent.getConfirmationStatus())){
-                    List<?> list = (List<?>) session.getAttribute("list");
-                    if ( null != list && !list.isEmpty()){
-                        if (list.get(0) instanceof Event){
-                            EventIntentHandler handler = new EventIntentHandler();
-                            return handler.iterateOverList(requestEnvelope);
-                        }
-                    }
-                }
+
+
 
             case "AMAZON.NextIntent":
 
-                List<?> list = (List<?>) session.getAttribute("list");
-                if ( null != list && !list.isEmpty()){
-                    if (list.get(0) instanceof Event){
-                        EventIntentHandler handler = new EventIntentHandler();
-                        return handler.iterateOverList(requestEnvelope);
+                List<LinkedHashMap> list = (ArrayList<LinkedHashMap>) session.getAttribute("list");
+                if ( null != list && !list.isEmpty()) {
+                    if ("Event".equals(list.get(0).get("type"))) {
+                        EventIntentHandler handler1 = new EventIntentHandler();
+                        return handler1.iterateOverList(requestEnvelope);
                     }
-                }else {
-                    String errorSpeech = "This list is curently unsupported.  Please try something else.";
-                    return SpeechletResponseBuilder.withOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
                 }
+                String errorSpeech = "This list is curently unsupported.  Please try something else.";
+                return SpeechletResponseBuilder.withOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
 
 
             case "AMAZON.YesIntent":
+                List<LinkedHashMap> elist = (ArrayList<LinkedHashMap>) session.getAttribute("list");
+                if ( null != elist && !elist.isEmpty()) {
+                    if ("Event".equals(elist.get(0).get("type"))) {
+                        EventIntentHandler handler2 = new EventIntentHandler();
+                        return handler2.iterateOverList(requestEnvelope);
+                    }
+                }
+                String errorSpeech2 = "This list is curently unsupported.  Please try something else.";
+                return SpeechletResponseBuilder.withOutputSpeech(errorSpeech2).withRepromptOutputSpeech(errorSpeech2).buildRespons();
+
+
             case "AMAZON.NoIntent":
             case "AMAZON.LoopOnIntent":
 
@@ -100,8 +106,8 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
                 outputSpeech.setText("Goodbye");
                 return SpeechletResponse.newTellResponse(outputSpeech);
             default:
-                String errorSpeech = "This is unsupported.  Please try something else.";
-                return SpeechletResponseBuilder.withOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
+                String errorSpeech3 = "This is unsupported.  Please try something else.";
+                return SpeechletResponseBuilder.withOutputSpeech(errorSpeech3).withRepromptOutputSpeech(errorSpeech3).buildRespons();
 
         }
     }
