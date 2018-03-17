@@ -13,7 +13,7 @@ public class GameOfCodeRequestHandler extends SpeechletRequestStreamHandler {
          * Alexa Skill and put the relevant Application Ids in this Set.
          */
         supportedApplicationIds = new HashSet<String>();
-        supportedApplicationIds.add("amzn1.ask.skill.47cee236-2bbd-4000-8e59-3a3b");
+        supportedApplicationIds.add("amzn1.ask.skill.47cee236-2bbd-4000-8e59-3a3b1380b50d");
     }
 
 
