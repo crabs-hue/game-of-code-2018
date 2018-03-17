@@ -1,21 +1,110 @@
 <html>
 <head>
     <link rel="stylesheet" href="node_modules/reveal/index.css">
-    <link rel="stylesheet" href="node_modules/reveal/theme/sky.css">
+    <link rel="stylesheet" href="node_modules/reveal/theme/default.css">
 </head>
 <body>
 <div class="reveal">
     <div class="slides">
+        <!-- Opening slide -->
         <section>
-            <h1>Project Code <em>Undefined</em></h1>
+            <h1>The Open Data Challenge</h1>
             <br/>
-            <h4>by Crabs-Hue</h4>
+            <h3>as seen by <em>Crab's Hue</em></h3>
+            <br/>
             <img src="./images/logo.png"/>
-            <br/>
-            <span>Game Of Code 2018 - Open Data Challenge</span>
+            <br><br>
+            <small>Game Of Code 2018</small>
         </section>
-        <section>Slide 2</section>
+
+        <!-- What are we talking about ? -->
+        <section>
+            <section>
+                <blockquote>
+                    <h2>By 2025 the global datasphere will grow to 163 zettabytes.</h2>
+                </blockquote>
+                <div><em>IDC - International Data Corporation</em></div>
+                <br/><br/>
+                <div class="fragment">
+                    <span>That is a trillion of gigabytes</span><br/>
+                    <small>( = 1000000000000000000000 bytes) !</small><br/>
+                    <span>That's TEN TIMES the 16.1ZB of data generated in 2016.</span>
+                </div>
+                <br/>
+                <div class="fragment">That's a lot of Hackathon ...</div>
+            </section>
+
+            <section>
+                <div>
+                    <h2>
+                        <span>How can we help</span><br/>
+                        <small class="fragment">people,<br/>developers</small><br/>
+                        <span>to explore this</span><br/>
+                        <small class="fragment">massive amount<br/>of unrelated</small><br/>
+                        <span>data ?</span>
+                    </h2>
+                </div>
+            </section>
+        </section>
+
+        <!-- -->
         <section data-background-transition="convex" data-background="./images/high-connectivity.png"></section>
+
+        <!-- -->
+        <section>
+            <section>
+                <h3>1 - We do more than re-use</h3>
+                <ul>
+                    <li class="fragment">
+                        <span>Step by step, <b>new kind</b> of relationships do appear.</span><br/>
+                    </li>
+                    <li class="fragment">
+                        <span>It becomes possible to link nodes <b>indirectly</b></span><br/>
+                    </li>
+                    <li class="fragment">
+                        <span>New kind of requests become possible even without connected paths</span><br/>
+                    </li>
+                </ul>
+                <br/><br/>
+                <div class="fragment">
+                    <div>Actually, we are creating new information !</div>
+                    <div>
+                        <small>the current graph has near 200 000 relationships</small><br/>
+                    </div>
+                </div>
+            </section>
+
+            <!-- -->
+            <section>
+                <h3>2 - Keep those information OPEN</h3>
+                <ul>
+                    <li class="fragment">Since we create data, it should remain public</li>
+                    <li class="fragment">
+                        <b>Go discover connections and explore the graph yourself !</b>
+                        <small><a href="http://ec2-52-211-57-228.eu-west-1.compute.amazonaws.com:8080/graphql/">http://ec2-52-211-57-228.eu-west-1.compute.amazonaws.com:8080/graphql/</a></small>
+                        <img src="./images/graphql.png"/>
+                    </li>
+                </ul>
+                <div class="fragment">
+                    <span>We published a common interface to access the connected data through a standard query language: <b>GraphQL</b></span>
+                </div>
+            </section>
+
+            <!-- -->
+            <section>
+                <h3>3 - Make those information accessible to everyone</h3>
+                <ul>
+                    <li class="fragment">Currently, people have to know what is available before actually start searching</li>
+                    <li class="fragment">There is so much data available that people could/should know</li>
+                    <li class="fragment">We provide this data through the most natural query language: <b>voice</b></li>
+                    <li class="fragment">Let's see what people find out ...</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h2>Thank you :-)</h2>
+        </section>
     </div>
 </div>
 <script src="node_modules/reveal/index.js"></script>
