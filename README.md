@@ -9,24 +9,57 @@ The main application class is:
 
 Start it as usual for a Spring Boot application.
 
-API is available on:
-<http://localhost:8080/api/>
+## API
 
-Add an `application-local.yml` file to `/src/main/resources` (ignored by Git) to specify custom configuration properties.
+The Api is accessible via a GraphQL client such "Altair GraphQL client" or "postman" which can be installed on Firefox or google chrome as an extension.
 
-## Frontend
+URL: http://ec2-52-211-57-228.eu-west-1.compute.amazonaws.com:7474/graphql/
 
-Sources are located under the `frontend` module.
+Example GraphQL query:
 
-After the first checkout, install with:
-```sh
-npm install
+```
+{
+ Route(name: "RE7400"){
+   id
+  hasSpotpoint {
+    name
+  }
+ }
+}
 ```
 
-Start it as usual for an Angular application:
-```sh
-npm start
+Example ouput:
 ```
-
-Application is available on:
-<http://localhost:4200>
+{
+  "data": {
+    "Route": [
+      {
+        "id": "2:C82---:RE7400",
+        "hasSpotpoint": [
+          {
+            "name": "Luxembourg, Gare Centrale"
+          },
+          {
+            "name": "Hollerich, Gare"
+          },
+          {
+            "name": "Dippach-Reckange, Gare"
+          },
+          {
+            "name": "Bascharage/Sanem, Gare"
+          },
+          {
+            "name": "Pétange, Gare"
+          },
+          {
+            "name": "Rodange, Gare"
+          }
+        ]
+      }
+    ]
+  },
+  "extensions": {
+    "type": "READ_ONLY"
+  }
+}
+```
