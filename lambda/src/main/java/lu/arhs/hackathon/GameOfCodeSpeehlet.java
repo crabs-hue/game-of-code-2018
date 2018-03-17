@@ -52,7 +52,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
 
 
         Intent intent = request.getIntent();
-        String intentName = (intent != null) ? intent.getName() : null;
+        String intentName = (intent != null) ? intent.getName() : "s";
 
         switch (intentName) {
             case "EventIntent":
