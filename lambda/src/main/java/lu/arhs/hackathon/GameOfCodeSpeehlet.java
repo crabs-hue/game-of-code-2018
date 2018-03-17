@@ -51,6 +51,12 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
         String intentName = (intent != null) ? intent.getName() : null;
 
         switch (intentName) {
+            case "EventIntent":
+
+
+            case "AMAZON.NextIntent":
+            case "AMAZON.LoopOnIntent":
+
             case "AMAZON.HelpIntent":
                 return getHelp();
             case "AMAZON.StopIntent":

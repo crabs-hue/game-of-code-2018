@@ -8,6 +8,7 @@ public class SpeechletResponseBuilder {
 
     private PlainTextOutputSpeech outputSpeech;
     private Reprompt reprompt;
+    private boolean shouldEndSession = true;
 
     private SpeechletResponseBuilder(String stringOutput){
         this.outputSpeech = new PlainTextOutputSpeech();
@@ -29,8 +30,15 @@ public class SpeechletResponseBuilder {
 
     }
 
+    public SpeechletResponseBuilder withShouldEndSession(boolean shouldEndSession){
+        this.shouldEndSession = shouldEndSession;
+        return  this;
+    }
+
     public SpeechletResponse buildRespons(){
-        return SpeechletResponse.newAskResponse(this.outputSpeech, this.reprompt);
+        SpeechletResponse response =  SpeechletResponse.newAskResponse(this.outputSpeech, this.reprompt);
+        response.setShouldEndSession(this.shouldEndSession);
+        return response;
     }
 
 

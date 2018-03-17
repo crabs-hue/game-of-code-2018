@@ -1,0 +1,37 @@
+{
+  "languageModel": {
+    "invocationName": "game of code",
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "slots": [],
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "slots": [],
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "slots": [],
+        "samples": []
+      },
+      {
+        "name": "EventIntent",
+        "slots": [
+          {
+            "name": "date",
+            "type": "AMAZON.DATE"
+          }
+        ],
+        "samples": [
+          "What's going on {date}",
+          "What's up at {date}",
+          "I want to go out {date}"
+        ]
+      }
+    ],
+    "types": []
+  }
+}
