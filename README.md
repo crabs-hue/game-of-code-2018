@@ -14,6 +14,8 @@ Start it as usual for a Spring Boot application.
 The Api is accessible via a GraphQL client such "Altair GraphQL client" or "postman" which can be installed on Firefox or google chrome as an extension.
 
 URL: http://ec2-52-211-57-228.eu-west-1.compute.amazonaws.com:8080/graphql/
+Username: neo4j
+Password: password
 
 Example GraphQL query:
 
