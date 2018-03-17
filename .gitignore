@@ -6,3 +6,6 @@ application-local.yml
 
 # Frontend files
 frontend/node_modules
+
+# Slideshow
+slideshow/node_modules
