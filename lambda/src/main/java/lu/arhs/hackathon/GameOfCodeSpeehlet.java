@@ -32,8 +32,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
                 requestEnvelope.getSession().getSessionId());
 
         String speechOutput =
-                "Welcome to the lifestyle app of Luxembourg. You can ask a question about, "
-                        + "events, public transportation and traffic ... Now, what can I help you with?";
+                "Welcome to the lifestyle app of Luxembourg... Now, what can I help you with?";
         // If the user either does not reply to the welcome message or says
         // something that is not understood, they will be prompted again with this text.
         String repromptText = "Now, what can I help you with?";
