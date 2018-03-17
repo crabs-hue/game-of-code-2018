@@ -12,6 +12,7 @@ import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class EventIntentHandler {
@@ -34,12 +35,41 @@ public class EventIntentHandler {
 
         List<Event> events = GraphRepository.getEvents(12.5, 12.5, 5);
 
+        session.setAttribute("list",events);
+        session.setAttribute("count",0);
 
         String outputText = String.format("I found %d events, should we have a look on the first one?", events.size());
 
         String repromtText = String.format("Last chance to check on the events in %s", location);
 
 
-        return SpeechletResponseBuilder.withOutputSpeech(outputText).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).buildRespons();
+        return SpeechletResponseBuilder.withOutputSpeech(outputText).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).withDelegateDialog(intent).buildRespons();
     }
+
+
+    public SpeechletResponse iterateOverList(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
+        IntentRequest request = requestEnvelope.getRequest();
+        log.info("iterateOverList requestId={}, sessionId={}", request.getRequestId(),
+                requestEnvelope.getSession().getSessionId());
+
+        Session session = requestEnvelope.getSession();
+        Intent intent = request.getIntent();
+
+        String outSpeech = "No more events found. What else can I do for you?";
+        List<Event> list = (List<Event>)session.getAttribute("list");
+        int count = (int) session.getAttribute("count");
+        Iterator<Event> iter = list.listIterator(0);
+        if (iter.hasNext()){
+            Event event = iter.next();
+            count = list.indexOf(event);
+            outSpeech = String.format("This Event, %s and takes place in %s at %t", event.getDescription(),event.getLan(), event.getStart());
+            session.setAttribute("count", count);
+        }
+
+        String repromtText = String.format("Select this event or take a look at the next one");
+
+        return SpeechletResponseBuilder.withOutputSpeech(outSpeech).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).withDelegateDialog(intent).buildRespons();
+
+    }
+
 }
