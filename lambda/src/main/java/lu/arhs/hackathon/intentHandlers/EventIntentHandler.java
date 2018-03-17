@@ -3,6 +3,7 @@ package lu.arhs.hackathon.intentHandlers;
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.IntentRequest;
+import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import lu.arhs.hackathon.GameOfCodeSpeehlet;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
@@ -18,8 +19,11 @@ public class EventIntentHandler {
         log.info("getEvent requestId={}, sessionId={}", request.getRequestId(),
                 requestEnvelope.getSession().getSessionId());
 
+        Session session = requestEnvelope.getSession();
         Intent intent = request.getIntent();
-        String date = intent.getSlot("date").getValue();
+        String location = intent.getSlot("location").getValue();
+
+
 
 
         return SpeechletResponseBuilder.withOutputSpeech("Test").withRepromptOutputSpeech("test").buildRespons();
