@@ -28,22 +28,28 @@ public class EventIntentHandler {
         Intent intent = request.getIntent();
         String location = intent.getSlot("location").getValue();
 
-        if (null == location){
-            location = "Merl";
 
-        }
-
-        List<Event> events = GraphRepository.getEvents(12.5, 12.5, 5);
+        List<Event> events = GraphRepository.getEvents(12.5, 12.5, 2);
 
         session.setAttribute("list",events);
-        session.setAttribute("count",0);
 
-        String outputText = String.format("I found %d events, should we have a look on the first one?", events.size());
+        int count = 0;
+        Iterator<Event> iter = events.listIterator(count);
+        Event event = iter.next();
+        String eventList = String.format("This first Event, %s and takes place in %s at %t", event.getDescription(),event.getLan(), event.getStart());
+        if (iter.hasNext()){
+            event = iter.next();
+            count = events.indexOf(event);
+            eventList += String.format("the next Event, %s and takes place in %s at %t", event.getDescription(),event.getLan(), event.getStart());
+            session.setAttribute("count", count);
+        }
+
+        String outputText = String.format("I found %d events, %d", eventList);
 
         String repromtText = String.format("Last chance to check on the events in %s", location);
 
 
-        return SpeechletResponseBuilder.withOutputSpeech(outputText).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).withDelegateDialog(intent).buildRespons();
+        return SpeechletResponseBuilder.withOutputSpeech(outputText).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).buildRespons();
     }
 
 

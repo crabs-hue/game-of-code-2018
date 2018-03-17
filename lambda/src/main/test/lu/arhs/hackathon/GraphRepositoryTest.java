@@ -1,6 +1,7 @@
 package lu.arhs.hackathon;
 
 
+import lu.arhs.hackathon.domain.Event;
 import lu.arhs.hackathon.executor.CypherExecutor;
 import lu.arhs.hackathon.repository.GraphRepository;
 import org.junit.Test;
@@ -12,13 +13,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class GraphRepositoryTest {
 
     @Test
     public void testEvent() throws Exception {
-        GraphRepository.getEvents(49.600690970137855, 6.113794412913669, 5);
+        List<Event> liste =GraphRepository.getEvents(49.600690970137855, 6.113794412913669, 5);
+
+        Thread.sleep(1000);
     }
 
     @Test
