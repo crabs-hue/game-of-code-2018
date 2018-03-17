@@ -9,6 +9,7 @@ public class Parking {
     double bboxY;
     double bboxW;
     double bboxZ;
+    String locality;
 
     public double getLan() {
         return lan;
@@ -64,5 +65,13 @@ public class Parking {
 
     public void setBboxZ(double bboxZ) {
         this.bboxZ = bboxZ;
+    }
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
     }
 }
