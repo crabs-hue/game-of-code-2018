@@ -1,0 +1,36 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Open Data challange",
+          "examplePhrases": [
+            "Alexa start game of code",
+            "Alexa open game of code",
+            "Alexa ask game of code",
+            "Alexa tell game of code"
+          ],
+          "keywords": [
+            "career",
+            "job",
+            "decision"
+          ],
+          "name": "Open Data challange",
+          "description": "Open Data challange"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "I want to go out in merl",
+      "category": "EDUCATION_AND_REFERENCE",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "src/main/java/lu/arhs/hackerthon"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}
