@@ -10,6 +10,7 @@ public class Parking {
     double bboxW;
     double bboxZ;
     String locality;
+    final static String type = new String("EVENT");
 
     public double getLan() {
         return lan;
@@ -73,5 +74,9 @@ public class Parking {
 
     public void setLocality(String locality) {
         this.locality = locality;
+    }
+
+    public static String getType() {
+        return type;
     }
 }

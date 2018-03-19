@@ -95,7 +95,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
 
                 List<LinkedHashMap> list = (ArrayList<LinkedHashMap>) session.getAttribute("list");
                 if ( null != list && !list.isEmpty()) {
-                    if ("Event".equals(list.get(0).get("type"))) {
+                    if ("EVENT".equals(list.get(0).get("type"))) {
                         EventIntentHandler handler1 = new EventIntentHandler();
                         return handler1.iterateOverList(requestEnvelope);
                     }
