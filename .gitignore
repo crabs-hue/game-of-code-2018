@@ -9,3 +9,20 @@ frontend/node_modules
 
 # Slideshow
 slideshow/node_modules
+/lambda/target/
+.DS_Store
+backend/backend.iml
+backend/target/
+crawler/crawler.iml
+crawler/target/
+lambda/.DS_Store
+lambda/src/.DS_Store
+lambda/src/main/.DS_Store
+lambda/src/main/test/.DS_Store
+lambda/target/archive-tmp/
+lambda/target/classes/log4j.properties
+lambda/target/classes/lu/arhs/hackathon/domain/Parking.class
+lambda/target/classes/lu/arhs/hackathon/intentHandlers/BusIntentHandler.class
+lambda/target/classes/lu/arhs/hackathon/intentHandlers/ParkingIntentHandler.class
+lambda/target/generated-sources/
+lambda/target/generated-test-sources/

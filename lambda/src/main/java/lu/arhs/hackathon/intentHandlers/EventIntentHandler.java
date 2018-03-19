@@ -12,11 +12,26 @@ import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class EventIntentHandler {
     private static final Logger log = LoggerFactory.getLogger(EventIntentHandler.class);
+
+
+
+    public SpeechletResponse askForLocality(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
+        IntentRequest request = requestEnvelope.getRequest();
+        log.info("getEvent requestId={}, sessionId={}", request.getRequestId(),
+                requestEnvelope.getSession().getSessionId());
+
+        Session session = requestEnvelope.getSession();
+        Intent intent = request.getIntent();
+
+        return SpeechletResponseBuilder.delegateDialog(intent);
+    }
 
 
     public SpeechletResponse getEvents(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
@@ -32,24 +47,12 @@ public class EventIntentHandler {
         List<Event> events = GraphRepository.getEvents(12.5, 12.5, 2);
 
         session.setAttribute("list",events);
+        session.setAttribute("count",0);
 
-        int count = 0;
-        Iterator<Event> iter = events.listIterator(count);
-        Event event = iter.next();
-        String eventList = String.format("This first Event, %s and takes place in %s at %t", event.getDescription(),event.getLan(), event.getStart());
-        if (iter.hasNext()){
-            event = iter.next();
-            count = events.indexOf(event);
-            eventList += String.format("the next Event, %s and takes place in %s at %t", event.getDescription(),event.getLan(), event.getStart());
-            session.setAttribute("count", count);
-        }
-
-        String outputText = String.format("I found %d events, %d", eventList);
-
-        String repromtText = String.format("Last chance to check on the events in %s", location);
+        String outputText = String.format("I found %d events around %s. Would you like to have a look on the first one?", events.size(),location);
 
 
-        return SpeechletResponseBuilder.withOutputSpeech(outputText).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).buildRespons();
+        return SpeechletResponseBuilder.confirmDialog(intent).withOutputSpeech(outputText).build();
     }
 
 
@@ -62,19 +65,19 @@ public class EventIntentHandler {
         Intent intent = request.getIntent();
 
         String outSpeech = "No more events found. What else can I do for you?";
-        List<Event> list = (List<Event>)session.getAttribute("list");
+        List<LinkedHashMap> list = (ArrayList<LinkedHashMap>)session.getAttribute("list");
         int count = (int) session.getAttribute("count");
-        Iterator<Event> iter = list.listIterator(0);
+        Iterator<LinkedHashMap> iter = list.listIterator(count);
         if (iter.hasNext()){
-            Event event = iter.next();
+            LinkedHashMap event = iter.next();
             count = list.indexOf(event);
-            outSpeech = String.format("This Event, %s and takes place in %s at %t", event.getDescription(),event.getLan(), event.getStart());
+            outSpeech = String.format("<speak>This Event, <emphasis>%s</emphasis>  and takes place in %s at %s<speak>", event.get("description"),event.get("locality"), event.get("start"));
             session.setAttribute("count", count);
         }
 
         String repromtText = String.format("Select this event or take a look at the next one");
 
-        return SpeechletResponseBuilder.withOutputSpeech(outSpeech).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).withDelegateDialog(intent).buildRespons();
+        return SpeechletResponseBuilder.withSSMLOutputSpeech(outSpeech).withRepromptOutputSpeech(repromtText ).withShouldEndSession(false).buildRespons();
 
     }
 

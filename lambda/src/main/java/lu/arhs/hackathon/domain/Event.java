@@ -8,6 +8,7 @@ public class Event {
     String description;
     String end;
     String locality;
+    final static String type = new String("EVENT");
 
     public double getLan() {
         return lan;
@@ -55,5 +56,9 @@ public class Event {
 
     public void setLocality(String locality) {
         this.locality = locality;
+    }
+
+    public static String getType() {
+        return type;
     }
 }
