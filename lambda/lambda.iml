@@ -35,6 +35,7 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.10" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.7.10" level="project" />
     <orderEntry type="library" name="Maven: org.neo4j.driver:neo4j-java-driver:1.5.1" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.neo4j:neo4j-collections:3.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.neo4j:neo4j-resource:3.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.neo4j:neo4j-common:3.3.3" level="project" />

@@ -31,6 +31,17 @@ public class GraphRepository {
             eventDomain.setStart(((String)event.get("start")));
             eventDomain.setEnd(((String)event.get("end")));
             eventDomain.setDescription(((String)event.get("description")));
+
+           String name =  (String)((Map<String, Object>)CypherExecutor.query("WITH point({latitude: {lan}, longitude: {lon}}) as my_position\n" +
+                    "MATCH (hn:HouseNumber)\n" +
+                    "WITH hn, distance(point({latitude: toFloat(hn.lat), longitude: toFloat(hn.lon)}), my_position)  AS distance\n" +
+                    "ORDER BY distance\n" +
+                    "LIMIT 1\n" +
+                    "MATCH (hn)-[*2..2]-(l:Locality)\n" +
+                    "WITH l\n" +
+                    "LIMIT 1\n" +
+                    "RETURN l", map("lan", eventDomain.getLan(), "lon", eventDomain.getLon())).next().get("l")).get("name");
+           eventDomain.setLocality(name);
         }
 
         return events;
@@ -60,6 +71,17 @@ public class GraphRepository {
             parkingDomain.setBboxY((double)((List)parking.get("bbox")).get(1));
             parkingDomain.setBboxW((double)((List)parking.get("bbox")).get(2));
             parkingDomain.setBboxZ((double)((List)parking.get("bbox")).get(3));
+
+            String name =  (String)((Map<String, Object>)CypherExecutor.query("WITH point({latitude: {lan}, longitude: {lon}}) as my_position\n" +
+                    "MATCH (hn:HouseNumber)\n" +
+                    "WITH hn, distance(point({latitude: toFloat(hn.lat), longitude: toFloat(hn.lon)}), my_position)  AS distance\n" +
+                    "ORDER BY distance\n" +
+                    "LIMIT 1\n" +
+                    "MATCH (hn)-[*2..2]-(l:Locality)\n" +
+                    "WITH l\n" +
+                    "LIMIT 1\n" +
+                    "RETURN l", map("lan", parkingDomain.getLan(), "lon", parkingDomain.getLon())).next().get("l")).get("name");
+            parkingDomain.setLocality(name);
 
         }
 

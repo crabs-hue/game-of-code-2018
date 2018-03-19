@@ -7,6 +7,7 @@ public class Event {
     String start;
     String description;
     String end;
+    String locality;
 
     public double getLan() {
         return lan;
@@ -46,5 +47,13 @@ public class Event {
 
     public void setEnd(String end) {
         this.end = end;
+    }
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
     }
 }

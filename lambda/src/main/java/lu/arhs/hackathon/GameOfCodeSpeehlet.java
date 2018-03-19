@@ -6,11 +6,14 @@ import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import lu.arhs.hackathon.domain.Event;
+import lu.arhs.hackathon.domain.Parking;
 import lu.arhs.hackathon.intentHandlers.EventIntentHandler;
+import lu.arhs.hackathon.repository.GraphRepository;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class GameOfCodeSpeehlet implements SpeechletV2 {
@@ -61,36 +64,33 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
 
         switch (intentName) {
             case "EventIntent":
-                if (ConfirmationStatus.NONE.equals(intent.getConfirmationStatus())) {
-                    EventIntentHandler handler = new EventIntentHandler();
-                    return handler.getEvents(requestEnvelope);
-                }else if (ConfirmationStatus.CONFIRMED.equals(intent.getConfirmationStatus())){
-                    List<?> list = (List<?>) session.getAttribute("list");
-                    if ( null != list && !list.isEmpty()){
-                        if (list.get(0) instanceof Event){
-                            EventIntentHandler handler = new EventIntentHandler();
-                            return handler.iterateOverList(requestEnvelope);
-                        }
-                    }
+                List<Event> list = GraphRepository.getEvents(49.600690970137855, 6.113794412913669, 2);
+                int count = 0;
+                Iterator<Event> iter = list.listIterator(count);
+                Event event = iter.next();
+                String eventList = String.format("This first Event, is %s and takes place in %s at %s, ", event.getDescription(),event.getLocality(), event.getStart());
+                if (iter.hasNext()){
+                    event = iter.next();
+                    count = list.indexOf(event);
+                    eventList += String.format("the next Event, is  %s and takes place in %s at %s", event.getDescription(),event.getLocality(), event.getStart());
+                    session.setAttribute("count", count);
                 }
 
-            case "AMAZON.NextIntent":
+                String outputText = String.format("I found %d events, %s", list.size(), eventList);
 
-                List<?> list = (List<?>) session.getAttribute("list");
-                if ( null != list && !list.isEmpty()){
-                    if (list.get(0) instanceof Event){
-                        EventIntentHandler handler = new EventIntentHandler();
-                        return handler.iterateOverList(requestEnvelope);
-                    }
-                }else {
-                    String errorSpeech = "This list is curently unsupported.  Please try something else.";
-                    return SpeechletResponseBuilder.withOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
-                }
+                String repromtText = String.format("Last chance to check on the events");
+                return SpeechletResponseBuilder.withOutputSpeech(outputText).withRepromptOutputSpeech(repromtText).withShouldEndSession(false).buildRespons();
+
+            case "ParkingIntent":
+                List<Parking> parkings = GraphRepository.getParkings(49.600690970137855, 6.113794412913669, 2);
 
 
-            case "AMAZON.YesIntent":
-            case "AMAZON.NoIntent":
-            case "AMAZON.LoopOnIntent":
+                String outputText2 = String.format("There are %d parking places around.", parkings.size());
+
+                String repromtText2 = String.format("Last chance to check on the events");
+                return SpeechletResponseBuilder.withOutputSpeech(outputText2).withRepromptOutputSpeech(repromtText2).withShouldEndSession(false).buildRespons();
+
+            case "BusIntent":
 
             case "AMAZON.HelpIntent":
                 return getHelp();
