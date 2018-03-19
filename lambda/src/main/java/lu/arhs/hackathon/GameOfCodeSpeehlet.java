@@ -45,7 +45,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
         String repromptText = "Now, what can I help you with?";
 
         // Here we are prompting the user for input
-        return SpeechletResponseBuilder.withOutputSpeech(speechOutput).withRepromptOutputSpeech(repromptText).withShouldEndSession(false).buildRespons();
+        return SpeechletResponseBuilder.withPlainTextOutputSpeech(speechOutput).withRepromptOutputSpeech(repromptText).withShouldEndSession(false).buildRespons();
     }
 
     @Override
@@ -87,7 +87,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
                 String outputText2 = String.format("There are %d parking places around.", parkings.size());
 
                 String repromtText2 = String.format("Last chance to check on the events");
-                return SpeechletResponseBuilder.withOutputSpeech(outputText2).withRepromptOutputSpeech(repromtText2).withShouldEndSession(false).buildRespons();
+                return SpeechletResponseBuilder.withPlainTextOutputSpeech(outputText2).withRepromptOutputSpeech(repromtText2).withShouldEndSession(false).buildRespons();
 
             case "BusIntent":
 
@@ -101,7 +101,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
                     }
                 }
                 String errorSpeech = "This list is curently unsupported.  Please try something else.";
-                return SpeechletResponseBuilder.withOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
+                return SpeechletResponseBuilder.withPlainTextOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
 
 
             case "AMAZON.YesIntent":
@@ -117,7 +117,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
                 return SpeechletResponse.newTellResponse(outputSpeech);
             default:
                 String errorSpeech3 = "This is unsupported.  Please try something else.";
-                return SpeechletResponseBuilder.withOutputSpeech(errorSpeech3).withRepromptOutputSpeech(errorSpeech3).buildRespons();
+                return SpeechletResponseBuilder.withPlainTextOutputSpeech(errorSpeech3).withRepromptOutputSpeech(errorSpeech3).buildRespons();
 
         }
     }
@@ -140,7 +140,7 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
         String repromptText =
                 "You can say things like, what's the recipe for a"
                         + " chest, or you can say exit... Now, what can I help you with?";
-        return SpeechletResponseBuilder.withOutputSpeech(speechOutput).withRepromptOutputSpeech(repromptText).buildRespons();
+        return SpeechletResponseBuilder.withPlainTextOutputSpeech(speechOutput).withRepromptOutputSpeech(repromptText).buildRespons();
     }
 
 }
