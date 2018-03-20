@@ -1,6 +1,10 @@
 lu/arhs/hackathon/persistance/Neo4jConnection.class
+lu/arhs/hackathon/intentHandlers/EventIntentHandler$1.class
 lu/arhs/hackathon/GameOfCodeSpeehlet.class
 lu/arhs/hackathon/GameOfCodeRequestHandler.class
+lu/arhs/hackathon/intentHandlers/IntentHanderInterface.class
+lu/arhs/hackathon/intentHandlers/NextIntentHandler.class
+lu/arhs/hackathon/intentHandlers/ResultListHandler.class
 lu/arhs/hackathon/intentHandlers/ParkingIntentHandler.class
 lu/arhs/hackathon/intentHandlers/EventIntentHandler.class
 lu/arhs/hackathon/repository/GraphRepository.class

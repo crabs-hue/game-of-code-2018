@@ -12,17 +12,52 @@ import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
-public class EventIntentHandler {
+public class EventIntentHandler implements IntentHanderInterface, ResultListHandler{
     private static final Logger log = LoggerFactory.getLogger(EventIntentHandler.class);
 
 
+    @Override
+    public SpeechletResponse processIntent(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
+        IntentRequest request = requestEnvelope.getRequest();
+        log.info("processEventIntent requestId={}, sessionId={}", request.getRequestId(),
+                requestEnvelope.getSession().getSessionId());
+        // session cen be used to save data
+        Session session = requestEnvelope.getSession();
 
-    public SpeechletResponse askForLocality(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
+
+        Intent intent = request.getIntent();
+        String intentName = (intent != null) ? intent.getName() : "s";
+        log.info("processEventIntent intentname={}, sessionId={}", intentName,
+                requestEnvelope.getSession().getSessionId());
+
+        switch (intent.getConfirmationStatus()){
+            case NONE:
+
+                if (null == intent.getSlot("location").getValue()){
+                    return this.askForLocality(requestEnvelope);
+                }
+                return this.getEvents(requestEnvelope);
+            case CONFIRMED:
+                List<HashMap> list = (List<HashMap>) session.getAttribute("list");
+                if ( null != list && !list.isEmpty()){
+                    //if ("EVENT".equals(list.get(0).get("type"))){
+                    return this.iterateOverList(requestEnvelope);
+                    //  }
+                }
+                return SpeechletResponseBuilder.withPlainTextOutputSpeech("This should not be poosible").withShouldEndSession(true).buildRespons();
+            case DENIED:
+                return SpeechletResponseBuilder.withPlainTextOutputSpeech("I cant't do this yet").withShouldEndSession(true).buildRespons();
+            default:
+                return SpeechletResponseBuilder.withPlainTextOutputSpeech("I did not understand").withShouldEndSession(true).buildRespons();
+        }
+
+    }
+
+
+
+    private SpeechletResponse askForLocality(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
         IntentRequest request = requestEnvelope.getRequest();
         log.info("askForLocality requestId={}, sessionId={}", request.getRequestId(),
                 requestEnvelope.getSession().getSessionId());
@@ -34,7 +69,7 @@ public class EventIntentHandler {
     }
 
 
-    public SpeechletResponse getEvents(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
+    private SpeechletResponse getEvents(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
         IntentRequest request = requestEnvelope.getRequest();
         log.info("getEvent requestId={}, sessionId={}", request.getRequestId(),
                 requestEnvelope.getSession().getSessionId());
@@ -44,7 +79,7 @@ public class EventIntentHandler {
         String location = intent.getSlot("location").getValue();
 
 
-        List<Event> events = GraphRepository.getEvents(12.5, 12.5, 2);
+        List<Event> events = GraphRepository.getEvents(49.600690970137855, 6.113794412913669, 2);
 
         session.setAttribute("list",events);
         session.setAttribute("count",0);
@@ -56,6 +91,7 @@ public class EventIntentHandler {
     }
 
 
+    @Override
     public SpeechletResponse iterateOverList(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
         IntentRequest request = requestEnvelope.getRequest();
         log.info("iterateOverList requestId={}, sessionId={}", request.getRequestId(),

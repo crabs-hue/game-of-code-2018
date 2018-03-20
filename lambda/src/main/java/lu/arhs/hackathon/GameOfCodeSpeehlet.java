@@ -7,7 +7,7 @@ import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import lu.arhs.hackathon.domain.Event;
 import lu.arhs.hackathon.domain.Parking;
-import lu.arhs.hackathon.intentHandlers.EventIntentHandler;
+import lu.arhs.hackathon.intentHandlers.*;
 import lu.arhs.hackathon.repository.GraphRepository;
 import lu.arhs.hackathon.repository.GraphRepository;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
@@ -62,52 +62,27 @@ public class GameOfCodeSpeehlet implements SpeechletV2 {
         log.info("onIntent intentname={}, sessionId={}", intentName,
                 requestEnvelope.getSession().getSessionId());
 
+        IntentHanderInterface handler = null;
         switch (intentName) {
+
             case "EventIntent":
-                if (ConfirmationStatus.NONE.equals(intent.getConfirmationStatus())) {
-                    EventIntentHandler handler = new EventIntentHandler();
-                    if ("".equals(intent.getSlot("location").getValue())){
-                        return handler.askForLocality(requestEnvelope);
-                    }
-                    return handler.getEvents(requestEnvelope);
-                }else if (ConfirmationStatus.CONFIRMED.equals(intent.getConfirmationStatus())){
-                    List<HashMap> list = (List<HashMap>) session.getAttribute("list");
-                    if ( null != list && !list.isEmpty()){
-                        //if ("EVENT".equals(list.get(0).get("type"))){
-                        EventIntentHandler handler = new EventIntentHandler();
-                        return handler.iterateOverList(requestEnvelope);
-                      //  }
-                    }
-                }
+                handler = new EventIntentHandler();
+                return handler.processIntent(requestEnvelope);
 
             case "ParkingIntent":
-                List<Parking> parkings = GraphRepository.getParkings(49.600690970137855, 6.113794412913669, 2);
-
-
-                String outputText2 = String.format("There are %d parking places around.", parkings.size());
-
-                String repromtText2 = String.format("Last chance to check on the events");
-                return SpeechletResponseBuilder.withPlainTextOutputSpeech(outputText2).withRepromptOutputSpeech(repromtText2).withShouldEndSession(false).buildRespons();
-
+                handler = new ParkingIntentHandler();
+                return handler.processIntent(requestEnvelope);
             case "BusIntent":
+                handler = new BusIntentHandler();
+                return handler.processIntent(requestEnvelope);
 
             case "AMAZON.NextIntent":
-
-                List<LinkedHashMap> list = (ArrayList<LinkedHashMap>) session.getAttribute("list");
-                if ( null != list && !list.isEmpty()) {
-                    if ("EVENT".equals(list.get(0).get("type"))) {
-                        EventIntentHandler handler1 = new EventIntentHandler();
-                        return handler1.iterateOverList(requestEnvelope);
-                    }
-                }
-                String errorSpeech = "This list is curently unsupported.  Please try something else.";
-                return SpeechletResponseBuilder.withPlainTextOutputSpeech(errorSpeech).withRepromptOutputSpeech(errorSpeech).buildRespons();
-
+                handler = new NextIntentHandler();
+                return handler.processIntent(requestEnvelope);
 
             case "AMAZON.YesIntent":
             case "AMAZON.NoIntent":
             case "AMAZON.LoopOnIntent":
-
             case "AMAZON.HelpIntent":
                 return getHelp();
             case "AMAZON.StopIntent":
