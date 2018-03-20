@@ -1,11 +1,15 @@
 package lu.arhs.hackathon.persistance;
 
+import lu.arhs.hackathon.executor.CypherExecutor;
 import org.neo4j.driver.v1.AuthTokens;
 import org.neo4j.driver.v1.Driver;
 import org.neo4j.driver.v1.GraphDatabase;
 import org.neo4j.driver.v1.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Neo4jConnection implements AutoCloseable {
+    private static final Logger log = LoggerFactory.getLogger(CypherExecutor.class);
 
     private final Driver driver;
 

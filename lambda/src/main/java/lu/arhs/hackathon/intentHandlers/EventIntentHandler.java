@@ -24,7 +24,7 @@ public class EventIntentHandler {
 
     public SpeechletResponse askForLocality(SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
         IntentRequest request = requestEnvelope.getRequest();
-        log.info("getEvent requestId={}, sessionId={}", request.getRequestId(),
+        log.info("askForLocality requestId={}, sessionId={}", request.getRequestId(),
                 requestEnvelope.getSession().getSessionId());
 
         Session session = requestEnvelope.getSession();
@@ -71,7 +71,7 @@ public class EventIntentHandler {
         if (iter.hasNext()){
             LinkedHashMap event = iter.next();
             count = list.indexOf(event);
-            outSpeech = String.format("<speak>This Event, <emphasis>%s</emphasis>  and takes place in %s at %s<speak>", event.get("description"),event.get("locality"), event.get("start"));
+            outSpeech = String.format("<speak>This Event, <emphasis>%s</emphasis>  and takes place in %s at %s</speak>", event.get("description"),event.get("locality"), event.get("start"));
             session.setAttribute("count", count);
         }
 
