@@ -17,7 +17,7 @@ public class SpeechletTest {
 
     @Test
     public void listIteratorTest()throws Exception{
-        File initialFile = new File("/Users/danielb/game-of-code-2018/lambda/src/main/test/resources/envelop.json");
+        File initialFile = new File("/Users/danielb/game-of-code-2018/lambda/src/main/test/resources/no_location_event_test.json");
         InputStream targetStream = new FileInputStream(initialFile);
         SpeechletRequestEnvelope<IntentRequest> env = (SpeechletRequestEnvelope<IntentRequest>)SpeechletRequestEnvelope.fromJson(targetStream);
         assertNotNull(env);

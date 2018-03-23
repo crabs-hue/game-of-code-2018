@@ -84,14 +84,10 @@
     "timestamp": "2018-03-17T11:26:55Z",
     "locale": "en-US",
     "intent": {
-      "name": "EventIntent",
-      "confirmationStatus": "CONFIRMED",
+      "name": "AMAZON.YesIntent",
+      "confirmationStatus": "NONE",
       "slots": {
-        "location": {
-          "name": "location",
-          "value": "now",
-          "confirmationStatus": "NONE"
-        }
+        "location": {}
       }
     },
     "dialogState": "IN_PROGRESS"

@@ -1,0 +1,99 @@
+{
+  "version": "1.0",
+  "session": {
+    "new": false,
+    "sessionId": "amzn1.echo-api.session.ed92da13-db9d-4948-9d41-50c4b2025ad1",
+    "application": {
+      "applicationId": "amzn1.ask.skill.47cee236-2bbd-4000-8e59-3a3b1380b50d"
+    },
+    "attributes": {
+      "count": 0,
+      "list": [
+        {
+          "lan": 6.130841,
+          "lon": 49.603778,
+          "start": "2017-03-04",
+          "description": "Avenue de la Liberté",
+          "end": "2017-03-04"
+        },
+        {
+          "lan": 6.113621,
+          "lon": 49.600508,
+          "start": "2017-04-28",
+          "description": "Hackathon Européen",
+          "end": "2017-04-29"
+        },
+        {
+          "lan": 6.113621,
+          "lon": 49.600508,
+          "start": "2017-03-11",
+          "description": "Let's code together",
+          "end": "2017-03-12"
+        },
+        {
+          "lan": 6.113621,
+          "lon": 49.600508,
+          "start": "2018-03-16",
+          "description": "Game Of Code est un Hackathon organisé par IT One, la première plateforme pour les \"ICT Decision-Maker\"",
+          "end": "2018-03-17"
+        },
+        {
+          "lan": 6.130801,
+          "lon": 49.605178,
+          "start": "2018-01-28",
+          "description": "Stage de danses traditionnelles argentines",
+          "end": "2018-01-28"
+        }
+      ]
+    },
+    "user": {
+      "userId": "amzn1.ask.account.AG4W6TYV3RNGLHHBN6DCVNV5JKJTQ555B4GM6LECGQFJLO7S263656DYR3RCDMPAO5UMRIBQNZXZMZRSFOVTIS5LDIBIQTAT3IM6BKJFJ2CFEHRNQW7Q354VKM2OPYI5DJPBKRNFURDBAOUF23A24FXTBLFITZF743E2TXTYOAT4YHXNTJ4SSXFFJPJXHNZYY43Y4ZUFSJJ4W3A"
+    }
+  },
+  "context": {
+    "AudioPlayer": {
+      "playerActivity": "IDLE"
+    },
+    "Display": {
+      "token": ""
+    },
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill.47cee236-2bbd-4000-8e59-3a3b1380b50d"
+      },
+      "user": {
+        "userId": "amzn1.ask.account.AG4W6TYV3RNGLHHBN6DCVNV5JKJTQ555B4GM6LECGQFJLO7S263656DYR3RCDMPAO5UMRIBQNZXZMZRSFOVTIS5LDIBIQTAT3IM6BKJFJ2CFEHRNQW7Q354VKM2OPYI5DJPBKRNFURDBAOUF23A24FXTBLFITZF743E2TXTYOAT4YHXNTJ4SSXFFJPJXHNZYY43Y4ZUFSJJ4W3A"
+      },
+      "device": {
+        "deviceId": "amzn1.ask.device.AH6TWYLLCW4WKPNGHSIEPMGGBC34PUDFVMVAH2VLC35OR6BMRH4HZNDC5EK2XAZGDZZ26WFGPMR4KQ77UPCD6Y2UWWSV7RYSZLPSZDZQOEYUGVVUJXAY3JAHMMRYNKVEQOJGQQBTP6HNPIUNVJISRIF3FTNVW743VURD7DI3Y274F32Y6OA5M",
+        "supportedInterfaces": {
+          "AudioPlayer": {},
+          "Display": {
+            "templateVersion": "1.0",
+            "markupVersion": "1.0"
+          }
+        }
+      },
+      "apiEndpoint": "https://api.eu.amazonalexa.com",
+      "apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjQ3Y2VlMjM2LTJiYmQtNDAwMC04ZTU5LTNhM2IxMzgwYjUwZCIsImV4cCI6MTUyMTI4OTYxNSwiaWF0IjoxNTIxMjg2MDE1LCJuYmYiOjE1MjEyODYwMTUsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUg2VFdZTExDVzRXS1BOR0hTSUVQTUdHQkMzNFBVREZWTVZBSDJWTEMzNU9SNkJNUkg0SFpOREM1RUsyWEFaR0RaWjI2V0ZHUE1SNEtRNzdVUENENlkyVVdXU1Y3UllTWkxQU1pEWlFPRVlVR1ZWVUpYQVkzSkFITU1SWU5LVkVRT0pHUVFCVFA2SE5QSVVOVkpJU1JJRjNGVE5WVzc0M1ZVUkQ3REkzWTI3NEYzMlk2T0E1TSIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFHNFc2VFlWM1JOR0xISEJONkRDVk5WNUpLSlRRNTU1QjRHTTZMRUNHUUZKTE83UzI2MzY1NkRZUjNSQ0RNUEFPNVVNUklCUU5aWFpNWlJTRk9WVElTNUxESUJJUVRBVDNJTTZCS0pGSjJDRkVIUk5RVzdRMzU0VktNMk9QWUk1REpQQktSTkZVUkRCQU9VRjIzQTI0RlhUQkxGSVRaRjc0M0UyVFhUWU9BVDRZSFhOVEo0U1NYRkZKUEpYSE5aWVk0M1k0WlVGU0pKNFczQSJ9fQ.fN9pZHwe4FGqDuYzl9TPxoWVouud92qP5bEGE2xpFVROtKuKam9458Jsm8w6oRz2rZ8xN3_DVNdGnmDBiQ3-nlyZtyhjhPv0LsrycLVHyfHE-LHCKfrjxrrrjlc7jSR0L69cQ2hyGwEeGRcjPt4rNSHMfpcBzXK93ACX1EImzon_JKxV-H5WuunGxjBvXrqc0VfNfH8Y5RvvQx9uKvFgGk-hir-0TkF1Dqh-c_c6iaADA8BDxuTazpA588yuwHW1TK29j4hbycu69viyv0gm3AboEsDhH-hs4jvJb20wQmqwUL9YNerozef8iJHX6jf2ZhwwfuE3zEg4tdzp1tOFoQ"
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "amzn1.echo-api.request.550d2d77-bd5b-4ba2-a596-6012fb3d1917",
+    "timestamp": "2018-03-17T11:26:55Z",
+    "locale": "en-US",
+    "intent": {
+      "name": "EventIntent",
+      "confirmationStatus": "NONE",
+      "slots": {
+        "location": {
+          "name": "location",
+          "value": "NONE",
+          "confirmationStatus": "NONE"
+        }
+      }
+    },
+    "dialogState": "IN_PROGRESS"
+  }
+}
