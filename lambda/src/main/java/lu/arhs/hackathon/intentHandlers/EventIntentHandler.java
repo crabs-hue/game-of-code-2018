@@ -5,7 +5,6 @@ import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
-import lu.arhs.hackathon.GameOfCodeSpeehlet;
 import lu.arhs.hackathon.domain.Event;
 import lu.arhs.hackathon.repository.GraphRepository;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;

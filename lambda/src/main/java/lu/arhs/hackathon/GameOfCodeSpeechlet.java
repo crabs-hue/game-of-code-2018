@@ -1,24 +1,17 @@
 package lu.arhs.hackathon;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
-import com.amazon.speech.slu.ConfirmationStatus;
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
-import lu.arhs.hackathon.domain.Event;
-import lu.arhs.hackathon.domain.Parking;
 import lu.arhs.hackathon.intentHandlers.*;
-import lu.arhs.hackathon.repository.GraphRepository;
-import lu.arhs.hackathon.repository.GraphRepository;
 import lu.arhs.hackathon.responses.SpeechletResponseBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+public class GameOfCodeSpeechlet implements SpeechletV2 {
 
-public class GameOfCodeSpeehlet implements SpeechletV2 {
-
-    private static final Logger log = LoggerFactory.getLogger(GameOfCodeSpeehlet.class);
+    private static final Logger log = LoggerFactory.getLogger(GameOfCodeSpeechlet.class);
 
     /**
      * The key to get the item from the intent.

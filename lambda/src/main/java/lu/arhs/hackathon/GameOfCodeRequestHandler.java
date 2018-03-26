@@ -17,5 +17,5 @@ public class GameOfCodeRequestHandler extends SpeechletRequestStreamHandler {
     }
 
 
-    public GameOfCodeRequestHandler(){super(new GameOfCodeSpeehlet(), supportedApplicationIds);}
+    public GameOfCodeRequestHandler(){super(new GameOfCodeSpeechlet(), supportedApplicationIds);}
 }

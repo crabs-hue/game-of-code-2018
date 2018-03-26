@@ -1,6 +1,5 @@
 package lu.arhs.hackathon.executor;
 
-import lu.arhs.hackathon.GameOfCodeSpeehlet;
 import lu.arhs.hackathon.persistance.Neo4jConnection;
 import org.neo4j.driver.v1.*;
 import org.slf4j.Logger;
